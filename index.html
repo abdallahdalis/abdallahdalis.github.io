@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abdallah Dalis — Economist & Data Analyst</title>
+<meta name="description" content="M.S. Economics & Quantitative Analysis. Causal inference, structural IO, applied econometrics. Chicago." />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root{
+    --ink:#0f172a; --ink2:#334155; --muted:#64748b; --line:#e2e8f0;
+    --bg:#ffffff; --panel:#f8fafc; --accent:#1d4ed8;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header{border-bottom:1px solid var(--line);background:var(--bg)}
+  .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:34px 0 26px;flex-wrap:wrap}
+  h1{font-size:30px;margin:0 0 4px;letter-spacing:-0.02em}
+  .role{color:var(--ink2);font-size:16px;margin:0}
+  .contact{font-size:14px;color:var(--muted);text-align:right}
+  .contact a{color:var(--ink2)}
+  .contact span{display:inline-block;margin-left:14px}
+
+  /* Section */
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+  h2{font-size:23px;margin:0 0 6px;letter-spacing:-0.01em}
+  .lede{color:var(--ink2);font-size:16px;max-width:760px;margin:0 0 22px}
+
+  /* Map */
+  .mapcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+  .maptools{display:flex;gap:8px;align-items:center;padding:12px 14px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .seg button{border:0;background:#fff;padding:7px 13px;font-size:13px;color:var(--ink2);cursor:pointer;font-weight:600}
+  .seg button.on{background:var(--accent);color:#fff}
+  .btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 13px;font-size:13px;color:var(--ink2);cursor:pointer;font-weight:600}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .spacer{flex:1}
+  #map{height:560px;width:100%;background:#eef2f7}
+  .legend{display:flex;gap:0;align-items:center;font-size:12px;color:var(--muted)}
+  .legend .bar{display:flex;height:10px;width:160px;border-radius:5px;overflow:hidden;margin:0 8px}
+  .legend .bar i{flex:1}
+
+  .lp{font:13px/1.5 -apple-system,sans-serif}
+  .lp b{font-size:14px;color:var(--ink)}
+  .lp .row{display:flex;justify-content:space-between;gap:18px;margin-top:3px}
+  .lp .k{color:var(--muted)}
+  .lp .flag{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700}
+  .lp .yes{background:#fee2e2;color:#b91c1c}
+  .lp .no{background:#dcfce7;color:#15803d}
+
+  .note{font-size:13px;color:var(--muted);margin-top:14px;max-width:760px}
+
+  /* Findings strip */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .stat .big{font-size:26px;font-weight:700;letter-spacing:-0.02em}
+  .stat .lab{font-size:13px;color:var(--muted);margin-top:2px}
+
+  /* Projects */
+  .proj{padding:18px 0;border-top:1px solid var(--line)}
+  .proj:first-of-type{border-top:0}
+  .proj h3{margin:0 0 4px;font-size:16px}
+  .proj p{margin:0;color:var(--ink2);font-size:15px}
+  .proj .meta{font-size:13px;color:var(--muted);margin-top:5px}
+
+  footer{padding:36px 0;color:var(--muted);font-size:13px}
+  @media(max-width:680px){
+    .stats{grid-template-columns:1fr}
+    .contact{text-align:left}
+    #map{height:440px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap top">
+    <div>
+      <h1>Abdallah Dalis</h1>
+      <p class="role">Economist &amp; Data Analyst · M.S. Economics &amp; Quantitative Analysis</p>
+    </div>
+    <div class="contact">
+      <a href="mailto:dalisabdallah@gmail.com">dalisabdallah@gmail.com</a><br/>
+      <span><a href="https://linkedin.com/in/abdallahdalis">LinkedIn</a></span>
+      <span><a href="#" id="ghlink">GitHub</a></span>
+      <span><a href="https://drive.google.com/file/d/1ZACO66TGZDvLpOrHQhGQk7j8ogvn9Dai/view" target="_blank" rel="noopener">Résumé</a></span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Flagship project · Interactive</p>
+      <h2>Where are Chicago's food deserts — and what predicts them?</h2>
+      <p class="lede">
+        A logistic model of low-income / low-access ("food desert") status across
+        <strong>791 Chicago census tracts</strong>, built from the USDA Food Access Research Atlas.
+        Each tract below is shaded by its <strong>predicted</strong> probability of being a food desert.
+        Click any tract to see the drivers. Toggle to compare the model against the
+        <strong>actual</strong> USDA designation.
+      </p>
+
+      <div class="mapcard">
+        <div class="maptools">
+          <div class="seg" id="modeSeg">
+            <button data-mode="pred" class="on">Predicted probability</button>
+            <button data-mode="actual">Actual food desert</button>
+          </div>
+          <button class="btn" id="roseBtn">Zoom to Roseland</button>
+          <button class="btn" id="resetBtn">Reset view</button>
+          <div class="spacer"></div>
+          <div class="legend">
+            <span id="legLo">low</span>
+            <span class="bar" id="legBar"></span>
+            <span id="legHi">high</span>
+          </div>
+        </div>
+        <div id="map"></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="big" id="s1">71%</div><div class="lab">of Roseland tracts are food deserts — vs 26% citywide</div></div>
+        <div class="stat"><div class="big">+0.38 pp</div><div class="lab">per 1-pt rise in % Black population, holding income constant (p &lt; 1e-7)</div></div>
+        <div class="stat"><div class="big">791</div><div class="lab">census tracts modeled · USDA FARA 2019 · logit, cluster-robust SE</div></div>
+      </div>
+
+      <p class="note">
+        Outcome: USDA LILA-at-½-mile flag. Covariates: % Black, % Hispanic, log median family income,
+        % SNAP, % no-vehicle households. Predicted probabilities use the published full specification
+        (cluster-robust by community area). Built in Python &amp; Stata; mapped with Leaflet.
+        <strong>Team practicum (ECO 575, DePaul); my contribution: the logit specification,
+        marginal-effects analysis, and this visualization.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2>Other research &amp; analysis</h2>
+      <div style="margin-top:18px">
+        <div class="proj">
+          <h3>Monetary Policy &amp; Local Labor Markets</h3>
+          <p>Shift-share difference-in-differences across 2,887 U.S. counties (2002–2019); follow-up VAR/SVAR
+             and Jordà local projections with high-frequency Bauer–Swanson FOMC surprises. Showed the puzzling
+             positive employment response to tightening is an endogeneity artifact — the contractionary sign
+             recovers under clean identification.</p>
+          <p class="meta">Stata · high-frequency identification · 2025–26</p>
+        </div>
+        <div class="proj">
+          <h3>Production-Function Estimation, Productivity &amp; Markups</h3>
+          <p>Olley–Pakes structural estimation across six estimators on a 2,971-firm panel; showed naive OLS/FE
+             reverse the measured productivity time trend via survivor selection, and derived industry markups.</p>
+          <p class="meta">R · structural IO · 2026</p>
+        </div>
+        <div class="proj">
+          <h3>Housing &amp; Tax Inequality in Chicago's COVID-19 Recovery</h3>
+          <p>How property-tax structure and pandemic-era price dynamics deepened inequality.
+             2nd place, Columbia CIC Graduate Cohort (NSF-funded); presented at the Federal Reserve Bank of Chicago.</p>
+          <p class="meta">Award · presented Oct 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Abdallah Dalis · Chicago, IL · Data: USDA Food Access Research Atlas (2019), City of Chicago tract boundaries.
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const GITHUB_USER = "abdallahdalis"; // update if different
+document.getElementById('ghlink').href = "https://github.com/" + GITHUB_USER;
+
+const CHI = [41.8369, -87.6847];
+const map = L.map('map', {scrollWheelZoom:false}).setView([41.83,-87.70], 11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19
+}).addTo(map);
+map.on('click',()=>map.scrollWheelZoom.enable());
+
+let mode = 'pred';
+let layer;
+
+// sequential blue->red ramp for probability
+function ramp(t){ // t in [0,1]
+  t = Math.max(0,Math.min(1,t));
+  const stops=[[239,246,255],[191,219,254],[147,197,253],[251,191,36],[239,68,68],[153,27,27]];
+  const x=t*(stops.length-1), i=Math.floor(x), f=x-i;
+  const a=stops[i], b=stops[Math.min(i+1,stops.length-1)];
+  const c=a.map((v,k)=>Math.round(v+(b[k]-v)*f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+function colorFor(p){
+  if(mode==='actual') return p.actual===1 ? '#dc2626' : (p.actual===0 ? '#dcfce7' : '#e5e7eb');
+  return p.pred==null ? '#e5e7eb' : ramp(p.pred);
+}
+function style(f){return{fillColor:colorFor(f.properties),weight:0.4,color:'#94a3b8',fillOpacity:0.82};}
+
+function popupHtml(p){
+  const pct=v=>v==null?'—':v.toFixed(1)+'%';
+  const inc=p.medinc==null?'—':'$'+Number(p.medinc).toLocaleString();
+  const predTxt=p.pred==null?'—':(p.pred*100).toFixed(0)+'%';
+  const isFD=p.actual===1;
+  return `<div class="lp">
+    <b>${p.area||'Chicago'} · Tract ${p.tract||''}</b>
+    <span class="flag ${isFD?'yes':'no'}">${isFD?'Food desert (USDA)':'Not a food desert'}</span>
+    <div class="row"><span class="k">Predicted probability</span><span>${predTxt}</span></div>
+    <div class="row"><span class="k">% Black</span><span>${pct(p.pct_black)}</span></div>
+    <div class="row"><span class="k">% Hispanic</span><span>${pct(p.pct_hispanic)}</span></div>
+    <div class="row"><span class="k">Median family income</span><span>${inc}</span></div>
+    <div class="row"><span class="k">% on SNAP</span><span>${pct(p.pct_snap)}</span></div>
+    <div class="row"><span class="k">% no vehicle</span><span>${pct(p.pct_hunv)}</span></div>
+  </div>`;
+}
+
+fetch('tracts.geojson').then(r=>r.json()).then(gj=>{
+  layer = L.geoJSON(gj,{
+    style,
+    onEachFeature:(f,l)=>{
+      l.bindPopup(popupHtml(f.properties),{maxWidth:280});
+      l.on('mouseover',()=>l.setStyle({weight:1.6,color:'#0f172a'}));
+      l.on('mouseout',()=>layer.resetStyle(l));
+    }
+  }).addTo(map);
+  map.fitBounds(layer.getBounds(),{padding:[10,10]});
+});
+
+// mode toggle
+document.querySelectorAll('#modeSeg button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#modeSeg button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); mode=b.dataset.mode;
+    if(layer) layer.setStyle(style);
+    document.getElementById('legLo').textContent = mode==='actual'?'Not food desert':'low';
+    document.getElementById('legHi').textContent = mode==='actual'?'Food desert':'high';
+  };
+});
+
+// legend bar
+const bar=document.getElementById('legBar');
+for(let i=0;i<24;i++){const s=document.createElement('i');s.style.background=ramp(i/23);bar.appendChild(s);}
+
+document.getElementById('roseBtn').onclick=()=>map.setView([41.700,-87.617],13);
+document.getElementById('resetBtn').onclick=()=>{ if(layer) map.fitBounds(layer.getBounds(),{padding:[10,10]}); };
+</script>
+</body>
+</html>

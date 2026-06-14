@@ -1,0 +1,6 @@
+# raw / intermediate data (public sources documented in README; keep repo light)
+data/chicago_food_access.dta
+data/tracts.json
+.DS_Store
+__pycache__/
+*.pyc
