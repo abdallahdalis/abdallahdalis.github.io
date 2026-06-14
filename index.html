@@ -35,6 +35,15 @@
   .lede{color:var(--ink2);font-size:16px;max-width:760px;margin:0 0 22px}
   .subtitle{font-size:18px;color:var(--ink);font-weight:600;margin:-2px 0 8px;letter-spacing:-0.01em}
   .prepared{font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+  .award-badge{display:inline-block;margin:8px 0 0;font-size:12.5px;font-weight:600;color:#92400e;
+    background:#fef3c7;border:1px solid #fde68a;border-radius:20px;padding:4px 12px}
+  .award-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;align-items:start;margin-top:8px}
+  .poster-link{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+  .poster{display:block;width:100%;height:auto}
+  .quotes .qlabel{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  .quotes blockquote{margin:0 0 14px;padding:12px 16px;background:var(--panel);border-left:3px solid var(--accent);
+    border-radius:0 8px 8px 0;font-size:14px;color:var(--ink2);line-height:1.5;font-style:italic}
+  @media(max-width:680px){.award-grid{grid-template-columns:1fr}}
 
   /* Map */
   .mapcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.06)}
@@ -96,6 +105,7 @@
     <div>
       <h1>Abdallah Dalis</h1>
       <p class="role">Economist &amp; Data Analyst · M.S. Economics &amp; Quantitative Analysis</p>
+      <p class="award-badge">🏆 2nd place nationwide · COVID Information Commons 2025 Student Paper Challenge · presented at the Federal Reserve Bank of Chicago</p>
     </div>
     <div class="contact">
       <a href="mailto:dalisabdallah@gmail.com">dalisabdallah@gmail.com</a><br/>
@@ -210,6 +220,35 @@
 
   <section>
     <div class="wrap">
+      <p class="eyebrow">🏆 Award-winning research</p>
+      <h2>Housing &amp; Tax Inequality in Chicago's COVID-19 Recovery</h2>
+      <p class="prepared">
+        2nd place nationwide, Graduate Cohort · COVID Information Commons 2025 Student Paper Challenge (NSF-funded)<br>
+        Sole-authored · presented at the Federal Reserve Bank of Chicago
+      </p>
+      <p class="lede">
+        How housing-price dynamics and Chicago's dependence on property taxes interacted to deepen
+        inequality through the COVID-19 recovery — and where the leverage points are for a more
+        equitable fiscal structure before the next crisis.
+        <a href="assets/CIC_Housing_Tax_Inequality_Dalis.pdf" target="_blank" rel="noopener">Read the paper (PDF) →</a>
+      </p>
+
+      <div class="award-grid">
+        <a class="poster-link" href="assets/cic_poster.png" target="_blank" rel="noopener">
+          <img class="poster" src="assets/cic_poster.png" alt="Award-winning CIC research poster: Housing Affordability and Property Tax Burden — Post-COVID Inequality in Chicago" loading="lazy">
+        </a>
+        <div class="quotes">
+          <p class="qlabel">From the anonymous judging panel</p>
+          <blockquote>"The authors clearly explained how COVID-19 affected housing and taxes for vulnerable groups, creating disparities, and offered strong recommendations connected to policy and community needs. The use of data made the findings credible."</blockquote>
+          <blockquote>"A strong and well-supported analysis of how housing affordability and property tax dependence deepened inequality during Chicago's COVID-19 recovery."</blockquote>
+          <blockquote>"A very interesting and relevant topic. The insights and findings are well supported by charts, which strengthen the paper."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
       <p class="eyebrow">Selected work</p>
       <h2>Other research &amp; analysis</h2>
       <div style="margin-top:18px">
@@ -226,12 +265,6 @@
           <p>Olley–Pakes structural estimation across six estimators on a 2,971-firm panel; showed naive OLS/FE
              reverse the measured productivity time trend via survivor selection, and derived industry markups.</p>
           <p class="meta">R · structural IO · 2026</p>
-        </div>
-        <div class="proj">
-          <h3>Housing &amp; Tax Inequality in Chicago's COVID-19 Recovery</h3>
-          <p>How property-tax structure and pandemic-era price dynamics deepened inequality.
-             2nd place, Columbia CIC Graduate Cohort (NSF-funded); presented at the Federal Reserve Bank of Chicago.</p>
-          <p class="meta">Award · presented Oct 2025</p>
         </div>
       </div>
     </div>
