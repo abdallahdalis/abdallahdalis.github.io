@@ -6,95 +6,107 @@
 <title>Abdallah Dalis — Economist & Data Analyst</title>
 <meta name="description" content="M.S. Economics & Quantitative Analysis. Causal inference, structural IO, applied econometrics. Chicago." />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
 <style>
   :root{
-    --ink:#0f172a; --ink2:#334155; --muted:#64748b; --line:#e2e8f0;
-    --bg:#ffffff; --panel:#f8fafc; --accent:#1d4ed8;
+    --ink:#1a1a1a; --soft:#3f3f3f; --muted:#6b6b67; --line:#d9d8d1;
+    --bg:#fdfdfb; --accent:#7a1414;
+    --serif:"Computer Modern Serif", Georgia, "Times New Roman", Times, serif;
+    --mono:"Computer Modern Typewriter", ui-monospace, "SF Mono", Menlo, monospace;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  body{font-family:var(--serif);color:var(--ink);background:var(--bg);
+    line-height:1.62;font-size:19px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:.6px}
+  a:hover{color:var(--accent)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
 
-  /* Header */
-  header{border-bottom:1px solid var(--line);background:var(--bg)}
-  .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:34px 0 26px;flex-wrap:wrap}
-  h1{font-size:30px;margin:0 0 4px;letter-spacing:-0.02em}
-  .role{color:var(--ink2);font-size:16px;margin:0}
-  .contact{font-size:14px;color:var(--muted);text-align:right}
-  .contact a{color:var(--ink2)}
-  .contact span{display:inline-block;margin-left:14px}
+  /* Masthead — title-page style */
+  header{border-bottom:2px solid var(--ink)}
+  .top{display:flex;flex-direction:column;align-items:center;text-align:center;padding:52px 0 28px}
+  h1{font-size:clamp(34px,8vw,46px);font-weight:700;margin:0 0 6px;letter-spacing:.01em}
+  .role{color:var(--soft);font-size:clamp(15px,4vw,18px);font-style:italic;margin:0}
+  .award-badge{display:inline-block;margin:18px 0 4px;font-size:14.5px;font-style:italic;color:var(--ink);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 6px;max-width:560px;line-height:1.5}
+  .contact{margin-top:16px;font-size:15px;color:var(--soft);font-variant:small-caps;letter-spacing:.04em}
+  .contact a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact a:hover{color:var(--accent);border-color:var(--accent)}
+  .contact span{margin:0 7px}
+  .contact br{display:none}
 
-  /* Section */
-  section{padding:48px 0;border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
-  h2{font-size:23px;margin:0 0 6px;letter-spacing:-0.01em}
-  .lede{color:var(--ink2);font-size:16px;max-width:760px;margin:0 0 22px}
-  .subtitle{font-size:18px;color:var(--ink);font-weight:600;margin:-2px 0 8px;letter-spacing:-0.01em}
-  .prepared{font-size:13px;color:var(--muted);margin:0 0 18px;line-height:1.5}
-  .award-badge{display:inline-block;margin:8px 0 0;font-size:12.5px;font-weight:600;color:#92400e;
-    background:#fef3c7;border:1px solid #fde68a;border-radius:20px;padding:4px 12px}
-  .award-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;align-items:start;margin-top:8px}
-  .poster-link{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+  /* Sections */
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-variant:small-caps;letter-spacing:.09em;font-size:14.5px;color:var(--muted);font-style:italic;margin:0 0 8px}
+  h2{font-size:clamp(24px,6vw,31px);font-weight:700;margin:0 0 8px;line-height:1.24}
+  .lede{color:var(--ink);font-size:19px;margin:0 0 22px}
+  .subtitle{font-size:clamp(17px,4.6vw,21px);font-weight:700;color:var(--ink);margin:2px 0 10px}
+  .prepared{font-size:15px;color:var(--muted);font-style:italic;margin:0 0 18px;line-height:1.5}
+  .award-badge ~ *{}
+  .note{font-size:15px;color:var(--soft);margin-top:16px;line-height:1.6}
+
+  /* Award feature */
+  .award-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start;margin-top:10px}
+  .poster-link{display:block;border:1px solid var(--ink);overflow:hidden}
   .poster{display:block;width:100%;height:auto}
-  .quotes .qlabel{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
-  .quotes blockquote{margin:0 0 14px;padding:12px 16px;background:var(--panel);border-left:3px solid var(--accent);
-    border-radius:0 8px 8px 0;font-size:14px;color:var(--ink2);line-height:1.5;font-style:italic}
-  @media(max-width:680px){.award-grid{grid-template-columns:1fr}}
+  .quotes .qlabel{font-variant:small-caps;letter-spacing:.07em;font-size:14px;color:var(--muted);font-style:italic;margin:0 0 12px}
+  .quotes blockquote{margin:0 0 16px;padding:0 0 0 18px;border-left:2px solid var(--ink);
+    font-size:16px;color:var(--soft);line-height:1.55;font-style:italic}
 
   /* Map */
-  .mapcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.06)}
-  .maptools{display:flex;gap:8px;align-items:center;padding:12px 14px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
-  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
-  .seg button{border:0;background:#fff;padding:7px 13px;font-size:13px;color:var(--ink2);cursor:pointer;font-weight:600}
-  .seg button.on{background:var(--accent);color:#fff}
-  .btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 13px;font-size:13px;color:var(--ink2);cursor:pointer;font-weight:600}
-  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .mapcard{border:1px solid var(--ink);overflow:hidden}
+  .maptools{display:flex;gap:8px;align-items:center;padding:12px 14px;background:#f4f3ee;border-bottom:1px solid var(--ink);flex-wrap:wrap}
+  .seg{display:inline-flex;border:1px solid var(--ink);overflow:hidden;background:#fff}
+  .seg button{font-family:var(--serif);border:0;background:#fff;padding:7px 13px;font-size:14px;color:var(--ink);cursor:pointer}
+  .seg button.on{background:var(--ink);color:#fff}
+  .btn{font-family:var(--serif);border:1px solid var(--ink);background:#fff;padding:7px 13px;font-size:14px;color:var(--ink);cursor:pointer}
+  .btn:hover{background:var(--ink);color:#fff}
   .spacer{flex:1}
-  #map{height:560px;width:100%;background:#eef2f7}
-  .legend{display:flex;gap:0;align-items:center;font-size:12px;color:var(--muted)}
-  .legend .bar{display:flex;height:10px;width:160px;border-radius:5px;overflow:hidden;margin:0 8px}
+  #map{height:520px;width:100%;background:#eee}
+  .legend{display:flex;gap:0;align-items:center;font-size:13px;color:var(--muted);font-style:italic}
+  .legend .bar{display:flex;height:10px;width:150px;overflow:hidden;margin:0 8px;border:1px solid var(--line)}
   .legend .bar i{flex:1}
 
-  .lp{font:13px/1.5 -apple-system,sans-serif}
-  .lp b{font-size:14px;color:var(--ink)}
+  .lp{font:14px/1.55 var(--serif)}
+  .lp b{font-size:15px;color:var(--ink)}
   .lp .row{display:flex;justify-content:space-between;gap:18px;margin-top:3px}
   .lp .k{color:var(--muted)}
-  .lp .flag{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700}
-  .lp .yes{background:#fee2e2;color:#b91c1c}
-  .lp .no{background:#dcfce7;color:#15803d}
+  .lp .flag{display:inline-block;margin-top:6px;padding:1px 8px;font-size:12px;font-style:italic;border:1px solid var(--line)}
+  .lp .yes{color:#7a1414}
+  .lp .no{color:#1a4d1a}
 
-  .note{font-size:13px;color:var(--muted);margin-top:14px;max-width:760px}
-
-  /* Findings strip */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
-  .stat .big{font-size:26px;font-weight:700;letter-spacing:-0.02em}
-  .stat .lab{font-size:13px;color:var(--muted);margin-top:2px}
+  /* Findings strip — like a results table */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:26px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .stat{padding:18px 16px}
+  .stat + .stat{border-left:1px solid var(--line)}
+  .stat .big{font-size:30px;font-weight:700}
+  .stat .lab{font-size:14px;color:var(--muted);margin-top:4px;line-height:1.4}
 
   /* Data & methods */
-  .srcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
-  .srccol h4{margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink2)}
+  .srcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:8px}
+  .srccol h4{margin:0 0 8px;font-size:15px;font-weight:700;font-variant:small-caps;letter-spacing:.05em;color:var(--ink)}
   .srccol ul{margin:0;padding:0;list-style:none}
-  .srccol li{font-size:14px;color:var(--ink2);padding:7px 0;border-top:1px solid var(--line);line-height:1.45}
+  .srccol li{font-size:15px;color:var(--soft);padding:7px 0;border-top:1px solid var(--line);line-height:1.45}
   .srccol li:first-child{border-top:0}
-  @media(max-width:680px){.srcgrid{grid-template-columns:1fr;gap:8px}}
 
   /* Projects */
-  .proj{padding:18px 0;border-top:1px solid var(--line)}
+  .proj{padding:20px 0;border-top:1px solid var(--line)}
   .proj:first-of-type{border-top:0}
-  .proj h3{margin:0 0 4px;font-size:16px}
-  .proj p{margin:0;color:var(--ink2);font-size:15px}
-  .proj .meta{font-size:13px;color:var(--muted);margin-top:5px}
+  .proj h3{margin:0 0 5px;font-size:19px;font-weight:700}
+  .proj p{margin:0;color:var(--soft);font-size:16px}
+  .proj .meta{font-size:14px;color:var(--muted);font-style:italic;margin-top:6px}
 
-  footer{padding:36px 0;color:var(--muted);font-size:13px}
+  footer{padding:34px 0;color:var(--muted);font-size:14px;font-style:italic;text-align:center}
+
   @media(max-width:680px){
+    body{font-size:18px}
+    .wrap{padding:0 20px}
+    section{padding:34px 0}
+    .award-grid{grid-template-columns:1fr;gap:18px}
+    .srcgrid{grid-template-columns:1fr;gap:10px}
     .stats{grid-template-columns:1fr}
-    .contact{text-align:left}
-    #map{height:440px}
+    .stat + .stat{border-left:0;border-top:1px solid var(--line)}
+    #map{height:430px}
   }
 </style>
 </head>
@@ -240,7 +252,7 @@
         </a>
         <div class="quotes">
           <p class="qlabel">From the anonymous judging panel</p>
-          <blockquote>"The authors clearly explained how COVID-19 affected housing and taxes for vulnerable groups, creating disparities, and offered strong recommendations connected to policy and community needs. The use of data made the findings credible."</blockquote>
+          <blockquote>"The author clearly explained how COVID-19 affected housing and taxes for vulnerable groups, creating disparities, and offered strong recommendations connected to policy and community needs. The use of data made the findings credible."</blockquote>
           <blockquote>"A strong and well-supported analysis of how housing affordability and property tax dependence deepened inequality during Chicago's COVID-19 recovery."</blockquote>
           <blockquote>"A very interesting and relevant topic. The insights and findings are well supported by charts, which strengthen the paper."</blockquote>
         </div>
