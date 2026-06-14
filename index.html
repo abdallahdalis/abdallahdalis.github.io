@@ -64,6 +64,14 @@
   .stat .big{font-size:26px;font-weight:700;letter-spacing:-0.02em}
   .stat .lab{font-size:13px;color:var(--muted);margin-top:2px}
 
+  /* Data & methods */
+  .srcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  .srccol h4{margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink2)}
+  .srccol ul{margin:0;padding:0;list-style:none}
+  .srccol li{font-size:14px;color:var(--ink2);padding:7px 0;border-top:1px solid var(--line);line-height:1.45}
+  .srccol li:first-child{border-top:0}
+  @media(max-width:680px){.srcgrid{grid-template-columns:1fr;gap:8px}}
+
   /* Projects */
   .proj{padding:18px 0;border-top:1px solid var(--line)}
   .proj:first-of-type{border-top:0}
@@ -139,6 +147,56 @@
         (cluster-robust by community area). Built in Python &amp; Stata; mapped with Leaflet.
         <strong>Team practicum (ECO 575, DePaul); my contribution: the logit specification,
         marginal-effects analysis, and this visualization.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Data &amp; methods</p>
+      <h2>How it was built</h2>
+      <p class="lede">
+        The food-access model is one layer of a 10-week applied practicum that triangulated grocery
+        access against <strong>crime, transit, SNAP retail, and grocery-siting economics</strong> for
+        Chicago's Roseland community — work tied to the CTA Red Line Extension. The map shown above is
+        the econometric core; the surrounding analysis grounded it in neighborhood reality.
+      </p>
+
+      <div class="srcgrid">
+        <div class="srccol">
+          <h4>Primary data</h4>
+          <ul>
+            <li><a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/" target="_blank" rel="noopener">USDA Food Access Research Atlas</a> (2019) — tract-level low-income / low-access measures</li>
+            <li><a href="https://www.census.gov/programs-surveys/acs" target="_blank" rel="noopener">American Community Survey</a> — demographics &amp; income</li>
+            <li><a href="https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2" target="_blank" rel="noopener">Chicago crime data</a> — offense counts by community area</li>
+            <li><a href="https://www.fns.usda.gov/snap/retailer-locator" target="_blank" rel="noopener">USDA SNAP Retailer Locator</a> — authorized food-retail access</li>
+            <li><a href="https://www.transitchicago.com/ridership/" target="_blank" rel="noopener">CTA ridership reports</a> — transit access</li>
+            <li><a href="https://cmap.illinois.gov/data/community-snapshots/" target="_blank" rel="noopener">CMAP Roseland data snapshots</a> — neighborhood context</li>
+          </ul>
+        </div>
+        <div class="srccol">
+          <h4>Method</h4>
+          <ul>
+            <li>Logistic regression of USDA LILA-at-½-mile status on % Black, % Hispanic, log median family income, % SNAP, % no-vehicle</li>
+            <li>Three specifications (parsimonious → full → cluster-robust SE by community area)</li>
+            <li>Average marginal effects for interpretation; VIF / correlation checks for multicollinearity</li>
+            <li>Census-tract ↔ community-area crosswalk to map results to Chicago neighborhoods</li>
+            <li>Built in <strong>Stata &amp; Python</strong>; visualized with Leaflet</li>
+          </ul>
+        </div>
+        <div class="srccol">
+          <h4>Key readings</h4>
+          <ul>
+            <li><a href="https://www.brookings.edu/articles/what-the-lack-of-premium-grocery-stores-says-about-disinvestment-in-black-neighborhoods/" target="_blank" rel="noopener">Brookings</a> — premium-grocery absence &amp; disinvestment in Black neighborhoods</li>
+            <li>UChicago Data Science Institute — market concentration &amp; food-access trends</li>
+            <li><em>Finding Food in Chicago &amp; the Suburbs</em> — Northeastern Illinois Community Food Security Assessment (2008)</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note">
+        Data sources reflect the full team practicum; the model, marginal-effects analysis,
+        and this visualization are my contribution.
       </p>
     </div>
   </section>
