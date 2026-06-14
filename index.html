@@ -27,6 +27,7 @@
   .top{display:flex;flex-direction:column;align-items:center;text-align:center;padding:52px 0 28px}
   h1{font-size:clamp(34px,8vw,46px);font-weight:700;margin:0 0 6px;letter-spacing:.01em}
   .role{color:var(--soft);font-size:clamp(15px,4vw,18px);font-style:italic;margin:0}
+  .tagline{color:var(--ink);font-size:clamp(16px,4.4vw,19px);margin:14px auto 0;max-width:520px;line-height:1.5}
   .award-badge{display:inline-block;margin:18px 0 4px;font-size:14.5px;font-style:italic;color:var(--ink);
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 6px;max-width:560px;line-height:1.5}
   .contact{margin-top:16px;font-size:15px;color:var(--soft);font-variant:small-caps;letter-spacing:.04em}
@@ -117,6 +118,7 @@
     <div>
       <h1>Abdallah Dalis</h1>
       <p class="role">Economist &amp; Data Analyst · M.S. Economics &amp; Quantitative Analysis</p>
+      <p class="tagline">I turn messy public data into clear answers — about housing, jobs, and inequality — and tools people can actually use.</p>
       <p class="award-badge">🏆 2nd place, Graduate Cohort · COVID Information Commons 2025 — international student paper challenge · presented at the Federal Reserve Bank of Chicago</p>
     </div>
     <div class="contact">
@@ -139,11 +141,10 @@
         Prepared for the Chicago Transit Authority &amp; Roseland community leadership
       </p>
       <p class="lede">
-        A logistic model of low-income / low-access ("food desert") status across
-        <strong>791 Chicago census tracts</strong>, built from the USDA Food Access Research Atlas.
-        Each tract below is shaded by its <strong>predicted</strong> probability of being a food desert.
-        Click any tract to see the drivers. Toggle to compare the model against the
-        <strong>actual</strong> USDA designation.
+        <strong>The short version:</strong> many Chicago neighborhoods — especially on the South and West
+        sides — don't have a nearby affordable grocery store. This map predicts which of the city's 791
+        neighborhoods are most at risk. <strong>Click any neighborhood</strong> to see why, or use the toggle
+        to compare the prediction with the official designation.
       </p>
 
       <div class="mapcard">
@@ -165,9 +166,9 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><div class="big" id="s1">71%</div><div class="lab">of Roseland tracts are food deserts — vs 26% citywide</div></div>
-        <div class="stat"><div class="big">+0.38 pp</div><div class="lab">per 1-pt rise in % Black population, holding income constant (p &lt; 1e-7)</div></div>
-        <div class="stat"><div class="big">791</div><div class="lab">census tracts modeled · USDA FARA 2019 · logit, cluster-robust SE</div></div>
+        <div class="stat"><div class="big">71%</div><div class="lab">of Roseland's neighborhoods are food deserts — vs. 26% citywide</div></div>
+        <div class="stat"><div class="big">+0.38 pp</div><div class="lab">more food-desert risk for each 1-point rise in a neighborhood's Black share — even at the same income level</div></div>
+        <div class="stat"><div class="big">791</div><div class="lab">Chicago neighborhoods analyzed, using public USDA data</div></div>
       </div>
 
       <p class="note">
