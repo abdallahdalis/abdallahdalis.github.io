@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Research Notes · Abdallah Dalis</title>
+<meta name="description" content="Plain-language notes on my research: monetary policy, regional labor markets, and who bears the cost of economic shocks." />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
+<link rel="stylesheet" href="../site.css" />
+<script>
+(function(){
+  const t = localStorage.getItem('theme') ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.dataset.theme = t;
+})();
+</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="brand" href="../">Abdallah Dalis</a>
+    <div class="links">
+      <a href="../#research">Research</a>
+      <a href="../#flagship">Map</a>
+      <a href="./">Notes</a>
+      <a href="https://github.com/abdallahdalis" target="_blank" rel="noopener">GitHub</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section style="border-bottom:0">
+    <div class="wrap">
+      <p class="eyebrow">Research notes</p>
+      <h2>Writing</h2>
+      <p class="lede">Plain-language notes on the research: what each paper asks, what it found, and what I learned building it.</p>
+
+      <a class="note-card" href="who-pays-when-the-fed-tightens.html">
+        <h3>Who pays when the Fed tightens?</h3>
+        <p>Part 1 of the monetary-incidence program is now on SSRN. What the paper finds, the limitation it discloses, and why I shipped it instead of waiting for perfect.</p>
+        <p class="meta">July 2026 · 4 min read</p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Abdallah Dalis · Chicago, IL</div>
+</footer>
+
+<script>
+document.getElementById('themeBtn').onclick = () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('theme', next);
+};
+</script>
+</body>
+</html>

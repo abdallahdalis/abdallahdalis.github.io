@@ -3,136 +3,165 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Abdallah Dalis — Economist & Data Analyst</title>
-<meta name="description" content="M.S. Economics & Quantitative Analysis. Causal inference, structural IO, applied econometrics. Chicago." />
+<title>Abdallah Dalis · Empirical Economist</title>
+<meta name="description" content="Empirical economist. Monetary policy, regional labor markets, applied causal inference. Who actually pays when the economy takes a hit? M.S. Economics, DePaul (2026). Chicago." />
+<meta property="og:title" content="Abdallah Dalis · Empirical Economist" />
+<meta property="og:description" content="Who actually pays? Research on monetary policy, regional labor markets, and the uneven incidence of economic shocks." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://abdallahdalis.github.io/" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
-<style>
-  :root{
-    --ink:#1a1a1a; --soft:#3f3f3f; --muted:#6b6b67; --line:#d9d8d1;
-    --bg:#fdfdfb; --accent:#7a1414;
-    --serif:"Computer Modern Serif", Georgia, "Times New Roman", Times, serif;
-    --mono:"Computer Modern Typewriter", ui-monospace, "SF Mono", Menlo, monospace;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{font-family:var(--serif);color:var(--ink);background:var(--bg);
-    line-height:1.62;font-size:19px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:.6px}
-  a:hover{color:var(--accent)}
-  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
-
-  /* Masthead — title-page style */
-  header{border-bottom:2px solid var(--ink)}
-  .top{display:flex;flex-direction:column;align-items:center;text-align:center;padding:52px 0 28px}
-  h1{font-size:clamp(34px,8vw,46px);font-weight:700;margin:0 0 6px;letter-spacing:.01em}
-  .role{color:var(--soft);font-size:clamp(15px,4vw,18px);font-style:italic;margin:0}
-  .tagline{color:var(--ink);font-size:clamp(16px,4.4vw,19px);margin:14px auto 0;max-width:520px;line-height:1.5}
-  .award-badge{display:inline-block;margin:18px 0 4px;font-size:14.5px;font-style:italic;color:var(--ink);
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 6px;max-width:560px;line-height:1.5}
-  .contact{margin-top:16px;font-size:15px;color:var(--soft);font-variant:small-caps;letter-spacing:.04em}
-  .contact a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--line)}
-  .contact a:hover{color:var(--accent);border-color:var(--accent)}
-  .contact span{margin:0 7px}
-  .contact br{display:none}
-
-  /* Sections */
-  section{padding:44px 0;border-bottom:1px solid var(--line)}
-  .eyebrow{font-variant:small-caps;letter-spacing:.09em;font-size:14.5px;color:var(--muted);font-style:italic;margin:0 0 8px}
-  h2{font-size:clamp(24px,6vw,31px);font-weight:700;margin:0 0 8px;line-height:1.24}
-  .lede{color:var(--ink);font-size:19px;margin:0 0 22px}
-  .subtitle{font-size:clamp(17px,4.6vw,21px);font-weight:700;color:var(--ink);margin:2px 0 10px}
-  .prepared{font-size:15px;color:var(--muted);font-style:italic;margin:0 0 18px;line-height:1.5}
-  .award-badge ~ *{}
-  .note{font-size:15px;color:var(--soft);margin-top:16px;line-height:1.6}
-
-  /* Award feature */
-  .award-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start;margin-top:10px}
-  .poster-link{display:block;border:1px solid var(--ink);overflow:hidden}
-  .poster{display:block;width:100%;height:auto}
-  .quotes .qlabel{font-variant:small-caps;letter-spacing:.07em;font-size:14px;color:var(--muted);font-style:italic;margin:0 0 12px}
-  .quotes blockquote{margin:0 0 16px;padding:0 0 0 18px;border-left:2px solid var(--ink);
-    font-size:16px;color:var(--soft);line-height:1.55;font-style:italic}
-
-  /* Map */
-  .mapcard{border:1px solid var(--ink);overflow:hidden}
-  .maptools{display:flex;gap:8px;align-items:center;padding:12px 14px;background:#f4f3ee;border-bottom:1px solid var(--ink);flex-wrap:wrap}
-  .seg{display:inline-flex;border:1px solid var(--ink);overflow:hidden;background:#fff}
-  .seg button{font-family:var(--serif);border:0;background:#fff;padding:7px 13px;font-size:14px;color:var(--ink);cursor:pointer}
-  .seg button.on{background:var(--ink);color:#fff}
-  .btn{font-family:var(--serif);border:1px solid var(--ink);background:#fff;padding:7px 13px;font-size:14px;color:var(--ink);cursor:pointer}
-  .btn:hover{background:var(--ink);color:#fff}
-  .spacer{flex:1}
-  #map{height:520px;width:100%;background:#eee}
-  .legend{display:flex;gap:0;align-items:center;font-size:13px;color:var(--muted);font-style:italic}
-  .legend .bar{display:flex;height:10px;width:150px;overflow:hidden;margin:0 8px;border:1px solid var(--line)}
-  .legend .bar i{flex:1}
-
-  .lp{font:14px/1.55 var(--serif)}
-  .lp b{font-size:15px;color:var(--ink)}
-  .lp .row{display:flex;justify-content:space-between;gap:18px;margin-top:3px}
-  .lp .k{color:var(--muted)}
-  .lp .flag{display:inline-block;margin-top:6px;padding:1px 8px;font-size:12px;font-style:italic;border:1px solid var(--line)}
-  .lp .yes{color:#7a1414}
-  .lp .no{color:#1a4d1a}
-
-  /* Findings strip — like a results table */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:26px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
-  .stat{padding:18px 16px}
-  .stat + .stat{border-left:1px solid var(--line)}
-  .stat .big{font-size:30px;font-weight:700}
-  .stat .lab{font-size:14px;color:var(--muted);margin-top:4px;line-height:1.4}
-
-  /* Data & methods */
-  .srcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:8px}
-  .srccol h4{margin:0 0 8px;font-size:15px;font-weight:700;font-variant:small-caps;letter-spacing:.05em;color:var(--ink)}
-  .srccol ul{margin:0;padding:0;list-style:none}
-  .srccol li{font-size:15px;color:var(--soft);padding:7px 0;border-top:1px solid var(--line);line-height:1.45}
-  .srccol li:first-child{border-top:0}
-
-  /* Projects */
-  .proj{padding:20px 0;border-top:1px solid var(--line)}
-  .proj:first-of-type{border-top:0}
-  .proj h3{margin:0 0 5px;font-size:19px;font-weight:700}
-  .proj p{margin:0;color:var(--soft);font-size:16px}
-  .proj .meta{font-size:14px;color:var(--muted);font-style:italic;margin-top:6px}
-
-  footer{padding:34px 0;color:var(--muted);font-size:14px;font-style:italic;text-align:center}
-
-  @media(max-width:680px){
-    body{font-size:18px}
-    .wrap{padding:0 20px}
-    section{padding:34px 0}
-    .award-grid{grid-template-columns:1fr;gap:18px}
-    .srcgrid{grid-template-columns:1fr;gap:10px}
-    .stats{grid-template-columns:1fr}
-    .stat + .stat{border-left:0;border-top:1px solid var(--line)}
-    #map{height:430px}
-  }
-</style>
+<link rel="stylesheet" href="site.css" />
+<script>
+/* Apply saved theme before paint to avoid flash */
+(function(){
+  const t = localStorage.getItem('theme') ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.dataset.theme = t;
+})();
+</script>
 </head>
 <body>
 
-<header>
-  <div class="wrap top">
-    <div>
-      <h1>Abdallah Dalis</h1>
-      <p class="role">Economist &amp; Data Analyst · M.S. Economics &amp; Quantitative Analysis</p>
-      <p class="tagline">Applied economist — I turn messy data into rigorous research and clear answers.</p>
-      <p class="award-badge">🏆 2nd place, Graduate Cohort · COVID Information Commons 2025 — international student paper challenge · presented at the Federal Reserve Bank of Chicago</p>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Abdallah Dalis</a>
+    <div class="links">
+      <a href="#research">Research</a>
+      <a href="#award" class="hide-sm">Award</a>
+      <a href="#flagship">Map</a>
+      <a href="#papers" class="hide-sm">Papers</a>
+      <a href="notes/">Notes</a>
+      <a href="https://github.com/abdallahdalis" target="_blank" rel="noopener">GitHub</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
     </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <h1>Abdallah Dalis</h1>
+    <p class="role">Empirical economist · applied causal inference</p>
+    <p class="degree">M.S. Economics &amp; Quantitative Analysis, DePaul University, Kellstadt Graduate School of Business (2026, With Distinction) · B.S. Mathematics &amp; Computer Science, UIC</p>
+    <p class="thesis">My research asks one question: <span class="q">when the economy takes a hit, who actually pays?</span> I trace how aggregate shocks and market structures land unevenly across counties, neighborhoods, and households.</p>
+    <p class="award-badge">🏆 2nd place, Graduate Cohort · COVID Information Commons 2025 international student paper challenge (NSF-funded) · presented at the Federal Reserve Bank of Chicago</p>
+    <p class="status"><span class="dot"></span>Now: publishing the monetary-incidence research program · seeking predoctoral and research assistant roles in economics</p>
     <div class="contact">
-      <a href="mailto:dalisabdallah@gmail.com">dalisabdallah@gmail.com</a><br/>
+      <a href="mailto:dalisabdallah@gmail.com">dalisabdallah@gmail.com</a>
       <span><a href="https://linkedin.com/in/abdallahdalis">LinkedIn</a></span>
-      <span><a href="#" id="ghlink">GitHub</a></span>
+      <span><a href="https://github.com/abdallahdalis">GitHub</a></span>
       <span><a href="https://drive.google.com/file/d/1ZACO66TGZDvLpOrHQhGQk7j8ogvn9Dai/view" target="_blank" rel="noopener">Résumé</a></span>
     </div>
   </div>
 </header>
 
 <main>
-  <section>
-    <div class="wrap">
+
+  <!-- ============ RESEARCH PROGRAM ============ -->
+  <section id="research">
+    <div class="wrap reveal">
+      <p class="eyebrow">The research program</p>
+      <h2>Monetary policy, local labor markets, and who bears the cost</h2>
+      <p class="lede">
+        Three installments, one program: a 2,884-county U.S. panel (2002&ndash;2019), three
+        identification strategies, and a single question. When the Fed tightens, which local labor
+        markets pay, and how much of what we think we know is an artifact of weak identification?
+      </p>
+
+      <div class="program">
+        <div class="part">
+          <div class="no">01</div>
+          <div>
+            <h3><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7000419" target="_blank" rel="noopener">Rate Sensitivity and Employment: A Shift-Share DiD of Federal Funds Rate Changes on County-Level Employment</a></h3>
+            <p>Compares employment in rate-sensitive counties against less-exposed counties around Fed
+               moves. The raw estimate leans slightly positive, against the textbook story: a puzzle the
+               paper scopes honestly as differential exposure, not a clean monetary shock.</p>
+            <p class="meta">
+              <span class="tag">SSRN working paper</span>
+              <span class="tag">NABE Mennis Award advance</span><br/>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7000419" target="_blank" rel="noopener">SSRN</a> ·
+              <a href="assets/MonetaryPolicy_CausalDiD_Dalis.pdf" target="_blank" rel="noopener">PDF</a> ·
+              <a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank" rel="noopener">code</a>
+              · Stata
+            </p>
+          </div>
+        </div>
+
+        <div class="part">
+          <div class="no">02</div>
+          <div>
+            <h3>Identification: does the puzzle survive clean shocks?</h3>
+            <p>VAR / SVAR and Jordà local projections with high-frequency Bauer&ndash;Swanson FOMC
+               surprises, plus a random-forest benchmark. Under clean identification the expected
+               contractionary effect returns: the Part&nbsp;1 puzzle is an endogeneity artifact,
+               and this paper shows the mechanism step by step.</p>
+            <p class="meta">
+              <span class="tag">Working paper</span><br/>
+              <a href="assets/MonetaryPolicy_TimeSeries_Dalis.pdf" target="_blank" rel="noopener">PDF</a> ·
+              <a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank" rel="noopener">code</a>
+              · R
+            </p>
+          </div>
+        </div>
+
+        <div class="part">
+          <div class="no">03</div>
+          <div>
+            <h3>Between Metros, Not Within: The Racial Incidence of Identified Monetary Contractions on Local Employment</h3>
+            <p>Once the contraction is identified cleanly, is the employment cost larger in
+               higher-minority counties? The negative gradient survives income and industry controls
+               but lives between metro areas, not within them. Estimates are still imprecise;
+               framed as incidence, not intent.</p>
+            <p class="meta">
+              <span class="tag">In progress · June 2026</span><br/>
+              <a href="https://github.com/abdallahdalis/monetary-policy-local-labor/tree/main/part3" target="_blank" rel="noopener">code &amp; draft</a>
+              · R
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">
+        The same incidence question runs through my other work: place-based access in Chicago
+        (the Roseland map below), and market structure in healthcare
+        (<a href="#papers">Medicaid expansion, insurer concentration, merger simulation</a>).
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ AWARD ============ -->
+  <section id="award">
+    <div class="wrap reveal">
+      <p class="eyebrow">🏆 Award-winning research</p>
+      <h2>Housing &amp; Tax Inequality in Chicago's COVID-19 Recovery</h2>
+      <p class="prepared">
+        2nd place, Graduate Cohort · COVID Information Commons 2025, an international student paper challenge (NSF-funded)<br>
+        Sole-authored · presented at the Federal Reserve Bank of Chicago
+      </p>
+      <p class="lede">
+        How housing-price dynamics and Chicago's dependence on property taxes interacted to deepen
+        inequality through the COVID-19 recovery, and where the leverage points are for a more
+        equitable fiscal structure before the next crisis.
+        <a href="assets/CIC_Housing_Tax_Inequality_Dalis.pdf" target="_blank" rel="noopener">Read the paper (PDF) →</a>
+      </p>
+
+      <div class="award-grid">
+        <a class="poster-link" href="assets/cic_poster.png" target="_blank" rel="noopener">
+          <img class="poster" src="assets/cic_poster.png" alt="Award-winning CIC research poster: Housing Affordability and Property Tax Burden, Post-COVID Inequality in Chicago" loading="lazy">
+        </a>
+        <div class="quotes">
+          <p class="qlabel">From the anonymous judging panel</p>
+          <blockquote>"The author clearly explained how COVID-19 affected housing and taxes for vulnerable groups, creating disparities, and offered strong recommendations connected to policy and community needs. The use of data made the findings credible."</blockquote>
+          <blockquote>"A strong and well-supported analysis of how housing affordability and property tax dependence deepened inequality during Chicago's COVID-19 recovery."</blockquote>
+          <blockquote>"A very interesting and relevant topic. The insights and findings are well supported by charts, which strengthen the paper."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FLAGSHIP MAP ============ -->
+  <section id="flagship">
+    <div class="wrap reveal">
       <p class="eyebrow">Flagship project · Interactive</p>
       <h2>Creating a Healthier, More Connected Future for the Far South Side</h2>
       <p class="subtitle">CTA Red Line Extension and the Community of Roseland</p>
@@ -141,9 +170,9 @@
         Prepared for the Chicago Transit Authority &amp; Roseland community leadership
       </p>
       <p class="lede">
-        <strong>The short version:</strong> many Chicago neighborhoods — especially on the South and West
-        sides — don't have a nearby affordable grocery store. This map predicts which of the city's 791
-        neighborhoods are most at risk. <strong>Click any neighborhood</strong> to see why, or use the toggle
+        <strong>The short version:</strong> many Chicago neighborhoods, especially on the South and West
+        sides, don't have a nearby affordable grocery store. This map predicts which of the city's 791
+        census tracts are most at risk. <strong>Click any tract</strong> to see why, or use the toggle
         to compare the prediction with the official designation.
       </p>
 
@@ -166,9 +195,9 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><div class="big">71%</div><div class="lab">of Roseland's neighborhoods are food deserts — vs. 26% citywide</div></div>
-        <div class="stat"><div class="big">+0.38 pp</div><div class="lab">more food-desert risk for each 1-point rise in a neighborhood's Black share — even at the same income level</div></div>
-        <div class="stat"><div class="big">791</div><div class="lab">Chicago neighborhoods analyzed, using public USDA data</div></div>
+        <div class="stat"><div class="big" data-count="71" data-suffix="%">0%</div><div class="lab">of Roseland's tracts are food deserts, vs. 26% citywide</div></div>
+        <div class="stat"><div class="big" data-count="0.38" data-prefix="+" data-suffix=" pp" data-dec="2">+0.00 pp</div><div class="lab">more food-desert risk for each 1-point rise in a tract's Black share, income held constant</div></div>
+        <div class="stat"><div class="big" data-count="791">0</div><div class="lab">Chicago census tracts analyzed, using public USDA data</div></div>
       </div>
 
       <p class="note">
@@ -177,164 +206,145 @@
         (cluster-robust by community area). Built in Python &amp; Stata; mapped with Leaflet.
         <strong>Team practicum (ECO 575, DePaul); my contribution: the logit specification,
         marginal-effects analysis, and this visualization.</strong>
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <p class="eyebrow">Data &amp; methods</p>
-      <h2>How it was built</h2>
-      <p class="lede">
-        The food-access model is one layer of a 10-week applied practicum that triangulated grocery
-        access against <strong>crime, transit, SNAP retail, and grocery-siting economics</strong> for
-        Chicago's Roseland community — work tied to the CTA Red Line Extension. The map shown above is
-        the econometric core; the surrounding analysis grounded it in neighborhood reality.
-      </p>
-
-      <div class="srcgrid">
-        <div class="srccol">
-          <h4>Primary data</h4>
-          <ul>
-            <li><a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/" target="_blank" rel="noopener">USDA Food Access Research Atlas</a> (2019) — tract-level low-income / low-access measures</li>
-            <li><a href="https://www.census.gov/programs-surveys/acs" target="_blank" rel="noopener">American Community Survey</a> — demographics &amp; income</li>
-            <li><a href="https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2" target="_blank" rel="noopener">Chicago crime data</a> — offense counts by community area</li>
-            <li><a href="https://www.fns.usda.gov/snap/retailer-locator" target="_blank" rel="noopener">USDA SNAP Retailer Locator</a> — authorized food-retail access</li>
-            <li><a href="https://www.transitchicago.com/ridership/" target="_blank" rel="noopener">CTA ridership reports</a> — transit access</li>
-            <li><a href="https://cmap.illinois.gov/data/community-snapshots/" target="_blank" rel="noopener">CMAP Roseland data snapshots</a> — neighborhood context</li>
-          </ul>
-        </div>
-        <div class="srccol">
-          <h4>Method</h4>
-          <ul>
-            <li>Logistic regression of USDA LILA-at-½-mile status on % Black, % Hispanic, log median family income, % SNAP, % no-vehicle</li>
-            <li>Three specifications (parsimonious → full → cluster-robust SE by community area)</li>
-            <li>Average marginal effects for interpretation; VIF / correlation checks for multicollinearity</li>
-            <li>Census-tract ↔ community-area crosswalk to map results to Chicago neighborhoods</li>
-            <li>Built in <strong>Stata &amp; Python</strong>; visualized with Leaflet</li>
-          </ul>
-        </div>
-        <div class="srccol">
-          <h4>Key readings</h4>
-          <ul>
-            <li><a href="https://www.brookings.edu/articles/what-the-lack-of-premium-grocery-stores-says-about-disinvestment-in-black-neighborhoods/" target="_blank" rel="noopener">Brookings</a> — premium-grocery absence &amp; disinvestment in Black neighborhoods</li>
-            <li>UChicago Data Science Institute — market concentration &amp; food-access trends</li>
-            <li><em>Finding Food in Chicago &amp; the Suburbs</em> — Northeastern Illinois Community Food Security Assessment (2008)</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="note">
-        Data sources reflect the full team practicum; the model, marginal-effects analysis,
-        and this visualization are my contribution.
         <a href="assets/Roseland_FoodAccess_Brief_Group2.pdf" target="_blank" rel="noopener">Read the executive summary (PDF) →</a>
       </p>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <p class="eyebrow">🏆 Award-winning research</p>
-      <h2>Housing &amp; Tax Inequality in Chicago's COVID-19 Recovery</h2>
-      <p class="prepared">
-        2nd place, Graduate Cohort · COVID Information Commons 2025 — an international student paper challenge (NSF-funded)<br>
-        Sole-authored · presented at the Federal Reserve Bank of Chicago
-      </p>
-      <p class="lede">
-        How housing-price dynamics and Chicago's dependence on property taxes interacted to deepen
-        inequality through the COVID-19 recovery — and where the leverage points are for a more
-        equitable fiscal structure before the next crisis.
-        <a href="assets/CIC_Housing_Tax_Inequality_Dalis.pdf" target="_blank" rel="noopener">Read the paper (PDF) →</a>
-      </p>
-
-      <div class="award-grid">
-        <a class="poster-link" href="assets/cic_poster.png" target="_blank" rel="noopener">
-          <img class="poster" src="assets/cic_poster.png" alt="Award-winning CIC research poster: Housing Affordability and Property Tax Burden — Post-COVID Inequality in Chicago" loading="lazy">
-        </a>
-        <div class="quotes">
-          <p class="qlabel">From the anonymous judging panel</p>
-          <blockquote>"The author clearly explained how COVID-19 affected housing and taxes for vulnerable groups, creating disparities, and offered strong recommendations connected to policy and community needs. The use of data made the findings credible."</blockquote>
-          <blockquote>"A strong and well-supported analysis of how housing affordability and property tax dependence deepened inequality during Chicago's COVID-19 recovery."</blockquote>
-          <blockquote>"A very interesting and relevant topic. The insights and findings are well supported by charts, which strengthen the paper."</blockquote>
+  <!-- ============ OTHER PAPERS ============ -->
+  <section id="papers">
+    <div class="wrap reveal">
+      <p class="eyebrow">Selected work</p>
+      <h2>Other research &amp; analysis</h2>
+      <div style="margin-top:18px">
+        <div class="proj">
+          <h3>Medicaid Expansion &amp; Healthcare Labor Markets</h3>
+          <p><strong>When states expanded Medicaid under the ACA, did healthcare workers' pay and jobs change?</strong>
+             A staggered difference-in-differences comparing expansion against non-expansion states,
+             using Census/CPS microdata.</p>
+          <p class="meta">Stata · health &amp; labor economics · <a href="assets/Medicaid_Healthcare_Labor_Dalis.pdf" target="_blank" rel="noopener">paper (PDF)</a></p>
+        </div>
+        <div class="proj">
+          <h3><a href="https://github.com/abdallahdalis/empirical-io" target="_blank" rel="noopener">Empirical Industrial Organization</a></h3>
+          <p><strong>How do firms set prices, and what happens when two of them merge?</strong>
+             Two structural projects: demand estimation and merger simulation (Berry logit demand, 2SLS,
+             Bertrand markups, re-solving the pricing equilibrium under the merged firm), and production
+             functions and markups (Olley&ndash;Pakes across six estimators on a 2,971 firm-year panel,
+             correcting for which firms survive).</p>
+          <p class="meta">R · structural IO ·
+             <a href="assets/IO_Demand_Mergers_Dalis.pdf" target="_blank" rel="noopener">demand &amp; mergers (PDF)</a> ·
+             <a href="assets/IO_ProductionFunctions_Markups_Dalis.pdf" target="_blank" rel="noopener">production &amp; markups (PDF)</a> ·
+             <a href="https://github.com/abdallahdalis/empirical-io" target="_blank" rel="noopener">code</a></p>
+        </div>
+        <div class="proj">
+          <h3>Market Concentration &amp; Consumer Welfare in Health Insurance</h3>
+          <p><strong>Does a near-monopoly insurer mean worse outcomes for consumers?</strong>
+             Using 2024 Illinois Department of Insurance data: the Illinois group health-insurance market
+             concentrates at an HHI near 6,521, with one insurer (HCSC / BCBS Illinois) holding about 80%.
+             The dominance largely doesn't produce consumer harm; claims handling, not market power,
+             drives most consumer friction.</p>
+          <p class="meta">Applied micro · IO &amp; health insurance ·
+             <a href="assets/HCSC_Market_Concentration_Dalis.pdf" target="_blank" rel="noopener">paper (PDF)</a> ·
+             <a href="https://github.com/abdallahdalis/health-insurance-concentration" target="_blank" rel="noopener">code</a></p>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <p class="eyebrow">Selected work</p>
-      <h2>Other research &amp; analysis</h2>
-      <div style="margin-top:18px">
-        <div class="proj">
-          <h3><a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank" rel="noopener">Monetary Policy &amp; Local Labor Markets</a></h3>
-          <p><strong>When the Fed raises interest rates, which local job markets actually feel it?</strong>
-             I study this two ways — comparing rate-sensitive counties (a shift-share difference-in-differences,
-             2002–2019) and tracking the economy over time (VAR / SVAR / Jordà local projections + random forest
-             with high-frequency FOMC surprises). The takeaway: the odd finding that tightening seems to <em>raise</em>
-             employment is a statistical artifact — done carefully, the expected contractionary effect reappears.</p>
-          <p class="meta">Stata &amp; R · causal + time series · NABE Mennis Award submission ·
-             <a href="assets/MonetaryPolicy_CausalDiD_Dalis.pdf" target="_blank" rel="noopener">DiD paper (PDF)</a> ·
-             <a href="assets/MonetaryPolicy_TimeSeries_Dalis.pdf" target="_blank" rel="noopener">time-series paper (PDF)</a> ·
-             <a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank" rel="noopener">code →</a></p>
-        </div>
-        <div class="proj">
-          <h3><a href="https://github.com/abdallahdalis/empirical-io" target="_blank" rel="noopener">Empirical Industrial Organization</a></h3>
-          <p><strong>How do firms set prices — and what happens when two of them merge?</strong>
-             Two structural projects: estimating demand and simulating a merger (Berry logit demand, 2SLS,
-             Bertrand markups, re-solving the pricing equilibrium under the merged firm), and measuring firm
-             productivity and markups (Olley–Pakes across six estimators on a 2,971 firm-year panel, correcting
-             for which firms survive).</p>
-          <p class="meta">R · structural IO ·
-             <a href="assets/IO_Demand_Mergers_Dalis.pdf" target="_blank" rel="noopener">demand &amp; mergers (PDF)</a> ·
-             <a href="assets/IO_ProductionFunctions_Markups_Dalis.pdf" target="_blank" rel="noopener">production &amp; markups (PDF)</a> ·
-             <a href="https://github.com/abdallahdalis/empirical-io" target="_blank" rel="noopener">code →</a></p>
-        </div>
-        <div class="proj">
-          <h3>Medicaid Expansion &amp; Healthcare Labor Markets</h3>
-          <p><strong>When states expanded Medicaid under the ACA, did healthcare workers' pay and jobs change?</strong>
-             I compare states that expanded against those that didn't (a staggered difference-in-differences),
-             using Census/CPS microdata.</p>
-          <p class="meta">Stata · health &amp; labor economics · <a href="assets/Medicaid_Healthcare_Labor_Dalis.pdf" target="_blank" rel="noopener">read the paper (PDF) →</a></p>
-        </div>
-        <div class="proj">
-          <h3>Market Concentration &amp; Consumer Welfare in Health Insurance</h3>
-          <p><strong>Does a near-monopoly insurer mean worse outcomes for consumers?</strong>
-             Using 2024 Illinois Department of Insurance data, I measure concentration in the Illinois group
-             health-insurance market — an HHI of roughly 6,521, with one insurer (HCSC / Blue Cross Blue Shield
-             of Illinois) holding about 80% of the market — and test whether that dominance produces consumer
-             harm. It largely doesn't: the dominant insurer draws the fewest complaints per policyholder, and
-             claims handling, not market power, drives most consumer friction.</p>
-          <p class="meta">Applied micro · industrial organization &amp; health insurance · <a href="assets/HCSC_Market_Concentration_Dalis.pdf" target="_blank" rel="noopener">read the paper (PDF) →</a></p>
-        </div>
-      </div>
+  <!-- ============ NOTES ============ -->
+  <section id="notes">
+    <div class="wrap reveal">
+      <p class="eyebrow">Research notes</p>
+      <h2>Writing</h2>
+      <p class="lede">Plain-language notes on the research: what each paper asks, what it found, and what I learned building it.</p>
+      <a class="note-card" href="notes/who-pays-when-the-fed-tightens.html">
+        <h3>Who pays when the Fed tightens?</h3>
+        <p>Part 1 of the monetary-incidence program is now on SSRN. What the paper finds, the limitation it discloses, and why I shipped it instead of waiting for perfect.</p>
+        <p class="meta">July 2026 · 4 min read</p>
+      </a>
+      <p class="note" style="margin-top:18px"><a href="notes/">All notes →</a></p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    Abdallah Dalis · Chicago, IL · Data: USDA Food Access Research Atlas (2019), City of Chicago tract boundaries.
+    Abdallah Dalis · Chicago, IL · Map data: USDA Food Access Research Atlas (2019), City of Chicago tract boundaries.
   </div>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const GITHUB_USER = "abdallahdalis"; // update if different
-document.getElementById('ghlink').href = "https://github.com/" + GITHUB_USER;
+/* ---------- theme toggle ---------- */
+const themeBtn = document.getElementById('themeBtn');
+let tileLayer; // set below; re-created on theme change
+function currentTheme(){ return document.documentElement.dataset.theme; }
+function applyTiles(){
+  if (tileLayer) tileLayer.remove();
+  const dark = currentTheme() === 'dark';
+  tileLayer = L.tileLayer(
+    dark ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+         : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    {attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19}
+  ).addTo(map);
+  if (layer) layer.bringToFront();
+}
+themeBtn.onclick = () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('theme', next);
+  applyTiles();
+};
 
-const CHI = [41.8369, -87.6847];
+/* ---------- reveal on scroll (with failsafe) ---------- */
+const io = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* Failsafe: if the observer never fires (unusual embeds, old browsers),
+   reveal everything rather than leave the page blank. */
+setTimeout(()=>{
+  if(document.querySelectorAll('.reveal.in').length===0){
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+    document.querySelectorAll('.stat .big').forEach(el=>{
+      el.textContent = (el.dataset.prefix||'') + el.dataset.count + (el.dataset.suffix||'');
+    });
+  }
+},700);
+
+/* ---------- animated counters ---------- */
+function animateCounter(el){
+  const target = parseFloat(el.dataset.count);
+  const dec = parseInt(el.dataset.dec||'0',10);
+  const pre = el.dataset.prefix||'', suf = el.dataset.suffix||'';
+  const dur = 1100, t0 = performance.now();
+  function tick(t){
+    const k = Math.min(1,(t-t0)/dur), eased = 1-Math.pow(1-k,3);
+    el.textContent = pre + (target*eased).toFixed(dec).toLocaleString() + suf;
+    if(k<1) requestAnimationFrame(tick);
+    else el.textContent = pre + Number(target.toFixed(dec)).toLocaleString(undefined,{minimumFractionDigits:dec}) + suf;
+  }
+  requestAnimationFrame(tick);
+}
+const statIO = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ animateCounter(e.target); statIO.unobserve(e.target); } });
+},{threshold:.6});
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('.stat .big').forEach(el=>statIO.observe(el));
+}else{
+  document.querySelectorAll('.stat .big').forEach(el=>{
+    el.textContent = (el.dataset.prefix||'') + el.dataset.count + (el.dataset.suffix||'');
+  });
+}
+
+/* ---------- map ---------- */
 const map = L.map('map', {scrollWheelZoom:false}).setView([41.83,-87.70], 11);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-  attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19
-}).addTo(map);
+let layer;
+applyTiles();
 map.on('click',()=>map.scrollWheelZoom.enable());
 
 let mode = 'pred';
-let layer;
-
-// sequential blue->red ramp for probability
-function ramp(t){ // t in [0,1]
+function ramp(t){
   t = Math.max(0,Math.min(1,t));
   const stops=[[239,246,255],[191,219,254],[147,197,253],[251,191,36],[239,68,68],[153,27,27]];
   const x=t*(stops.length-1), i=Math.floor(x), f=x-i;
@@ -377,7 +387,6 @@ fetch('tracts.geojson').then(r=>r.json()).then(gj=>{
   map.fitBounds(layer.getBounds(),{padding:[10,10]});
 });
 
-// mode toggle
 document.querySelectorAll('#modeSeg button').forEach(b=>{
   b.onclick=()=>{
     document.querySelectorAll('#modeSeg button').forEach(x=>x.classList.remove('on'));
@@ -388,7 +397,6 @@ document.querySelectorAll('#modeSeg button').forEach(b=>{
   };
 });
 
-// legend bar
 const bar=document.getElementById('legBar');
 for(let i=0;i<24;i++){const s=document.createElement('i');s.style.background=ramp(i/23);bar.appendChild(s);}
 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Who pays when the Fed tightens? · Abdallah Dalis</title>
+<meta name="description" content="Part 1 of my monetary-incidence research program is now on SSRN. What the paper finds, the limitation it discloses, and why I shipped it." />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" />
+<link rel="stylesheet" href="../site.css" />
+<script>
+(function(){
+  const t = localStorage.getItem('theme') ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.dataset.theme = t;
+})();
+</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="brand" href="../">Abdallah Dalis</a>
+    <div class="links">
+      <a href="../#research">Research</a>
+      <a href="../#flagship">Map</a>
+      <a href="./">Notes</a>
+      <a href="https://github.com/abdallahdalis" target="_blank" rel="noopener">GitHub</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="post" style="border-bottom:0">
+    <div class="wrap">
+      <p class="backlink"><a href="./">← All notes</a></p>
+      <h1>Who pays when the Fed tightens?</h1>
+      <p class="postmeta">Abdallah Dalis · July 2026 · 4 min read</p>
+
+      <p>I shipped the first paper of my research program to SSRN last week:
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7000419" target="_blank" rel="noopener">
+      "Rate Sensitivity and Employment: A Shift-Share Difference-in-Differences of Federal Funds Rate
+      Changes on County-Level Employment."</a></p>
+
+      <p>The question behind the whole program is simple to say and hard to answer: when the Fed
+      raises rates, who actually pays? National averages hide the answer. A rate hike is one number
+      in Washington, but its cost lands unevenly across thousands of local labor markets.</p>
+
+      <p>Part 1 measures that unevenness directly. I build a panel of U.S. counties from 2002 to
+      2019 and compare employment in counties more exposed to rate changes against counties less
+      exposed, before and after Fed moves. The headline result is a puzzle: more exposed counties
+      do not lose jobs after tightening, and the raw estimate even leans slightly positive. That
+      contradicts the textbook story and older regional evidence like Carlino and DeFina.</p>
+
+      <p>The positive sign should not be read as causal, and the paper says so plainly. Exposure to
+      rate changes is not randomly assigned, and the Fed raises rates when the economy is strong, so
+      strong labor markets and tightening arrive together. There is also a pre-trend at one of the
+      placebo lags, which I disclose rather than hide. The claim the paper can support is about
+      differential exposure, not a clean monetary shock.</p>
+
+      <p>That is what Part 2 is for. Using high-frequency surprises around FOMC announcements (the
+      Bauer-Swanson series) and local projections, the expected contractionary effect comes back.
+      The puzzle in Part 1 is an identification artifact, and showing that step by step is the point
+      of publishing both parts as a sequence.</p>
+
+      <p>Part 3 asks the distributional question: once the contraction is identified cleanly, is the
+      employment cost larger in higher-minority counties? The early answer is that the gradient
+      exists between metro areas rather than within them, though the estimates are still imprecise.
+      That one is in progress.</p>
+
+      <p>I sat on Part 1 for two months waiting to make it perfect. Shipping it with the limitation
+      disclosed was the better move: the flaw is scoped, the finding is honest, and the program only
+      reads as a program if the parts actually come out.</p>
+
+      <p>The paper is <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7000419"
+      target="_blank" rel="noopener">on SSRN</a>, and the code and data construction are
+      <a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank"
+      rel="noopener">on GitHub</a>. If you work on monetary policy, regional labor markets, or
+      place-based incidence, I would love to hear from you.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Abdallah Dalis · Chicago, IL</div>
+</footer>
+
+<script>
+document.getElementById('themeBtn').onclick = () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('theme', next);
+};
+</script>
+</body>
+</html>
