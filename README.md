@@ -43,8 +43,6 @@ Inputs:
 
 ## Other work
 
-- **Monetary Policy & Local Labor Markets** — shift-share DiD across 2,887 U.S. counties;
-  VAR/SVAR + Jordà local projections with high-frequency FOMC surprises.
 - **Production-Function Estimation, Productivity & Markups** — Olley–Pakes across six
   estimators on a 2,971-firm panel (R).
 - **Housing & Tax Inequality in Chicago's COVID-19 Recovery** — 2nd place, Columbia CIC

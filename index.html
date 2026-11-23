@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Abdallah Dalis · Empirical Economist</title>
-<meta name="description" content="Empirical economist. Monetary policy, regional labor markets, applied causal inference. Who actually pays when the economy takes a hit? M.S. Economics, DePaul (2026). Chicago." />
+<meta name="description" content="Empirical economist. Housing, property taxes, prices and applied causal inference. Who actually pays when the economy takes a hit? M.S. Economics, DePaul (2026). Chicago." />
 <meta property="og:title" content="Abdallah Dalis · Empirical Economist" />
-<meta property="og:description" content="Who actually pays? Research on monetary policy, regional labor markets, and the uneven incidence of economic shocks." />
+<meta property="og:description" content="Who actually pays? Research on housing, property taxes, prices, and the uneven incidence of economic shocks." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://abdallahdalis.github.io/" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -27,11 +27,9 @@
   <div class="nav-inner">
     <a class="brand" href="#top">Abdallah Dalis</a>
     <div class="links">
-      <a href="#research">Research</a>
       <a href="#award" class="hide-sm">Award</a>
       <a href="#flagship">Map</a>
       <a href="#papers" class="hide-sm">Papers</a>
-      <a href="notes/">Notes</a>
       <a href="https://github.com/abdallahdalis" target="_blank" rel="noopener">GitHub</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
     </div>
@@ -45,7 +43,7 @@
     <p class="degree">M.S. Economics &amp; Quantitative Analysis, DePaul University, Kellstadt Graduate School of Business (2026, With Distinction) · B.S. Mathematics &amp; Computer Science, UIC</p>
     <p class="thesis">My research asks one question: <span class="q">when the economy takes a hit, who actually pays?</span> I trace how aggregate shocks and market structures land unevenly across counties, neighborhoods, and households.</p>
     <p class="award-badge">🏆 2nd place, Graduate Cohort · COVID Information Commons 2025 international student paper challenge (NSF-funded) · presented at the Federal Reserve Bank of Chicago</p>
-    <p class="status"><span class="dot"></span>Now: publishing the monetary-incidence research program · seeking predoctoral and research assistant roles in economics</p>
+    <p class="status"><span class="dot"></span>Now: open to economics roles across research, business, consulting, finance and government</p>
     <div class="contact">
       <a href="mailto:dalisabdallah@gmail.com">dalisabdallah@gmail.com</a>
       <span><a href="https://linkedin.com/in/abdallahdalis">LinkedIn</a></span>
@@ -56,78 +54,6 @@
 </header>
 
 <main>
-
-  <!-- ============ RESEARCH PROGRAM ============ -->
-  <section id="research">
-    <div class="wrap reveal">
-      <p class="eyebrow">The research program</p>
-      <h2>Monetary policy, local labor markets, and who bears the cost</h2>
-      <p class="lede">
-        Three installments, one program: a 2,884-county U.S. panel (2002&ndash;2019), three
-        identification strategies, and a single question. When the Fed tightens, which local labor
-        markets pay, and how much of what we think we know is an artifact of weak identification?
-      </p>
-
-      <div class="program">
-        <div class="part">
-          <div class="no">01</div>
-          <div>
-            <h3><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7000419" target="_blank" rel="noopener">Rate Sensitivity and Employment: A Shift-Share DiD of Federal Funds Rate Changes on County-Level Employment</a></h3>
-            <p>Compares employment in rate-sensitive counties against less-exposed counties around Fed
-               moves. The raw estimate leans slightly positive, against the textbook story: a puzzle the
-               paper scopes honestly as differential exposure, not a clean monetary shock.</p>
-            <p class="meta">
-              <span class="tag">SSRN working paper</span>
-              <span class="tag">NABE Mennis Award advance</span><br/>
-              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7000419" target="_blank" rel="noopener">SSRN</a> ·
-              <a href="assets/MonetaryPolicy_CausalDiD_Dalis.pdf" target="_blank" rel="noopener">PDF</a> ·
-              <a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank" rel="noopener">code</a>
-              · Stata
-            </p>
-          </div>
-        </div>
-
-        <div class="part">
-          <div class="no">02</div>
-          <div>
-            <h3>Identification: does the puzzle survive clean shocks?</h3>
-            <p>VAR / SVAR and Jordà local projections with high-frequency Bauer&ndash;Swanson FOMC
-               surprises, plus a random-forest benchmark. Under clean identification the expected
-               contractionary effect returns: the Part&nbsp;1 puzzle is an endogeneity artifact,
-               and this paper shows the mechanism step by step.</p>
-            <p class="meta">
-              <span class="tag">Working paper</span><br/>
-              <a href="assets/MonetaryPolicy_TimeSeries_Dalis.pdf" target="_blank" rel="noopener">PDF</a> ·
-              <a href="https://github.com/abdallahdalis/monetary-policy-local-labor" target="_blank" rel="noopener">code</a>
-              · R
-            </p>
-          </div>
-        </div>
-
-        <div class="part">
-          <div class="no">03</div>
-          <div>
-            <h3>Between Metros, Not Within: The Racial Incidence of Identified Monetary Contractions on Local Employment</h3>
-            <p>Once the contraction is identified cleanly, is the employment cost larger in
-               higher-minority counties? The negative gradient survives income and industry controls
-               but lives between metro areas, not within them. Estimates are still imprecise;
-               framed as incidence, not intent.</p>
-            <p class="meta">
-              <span class="tag">In progress · June 2026</span><br/>
-              <a href="https://github.com/abdallahdalis/monetary-policy-local-labor/tree/main/part3" target="_blank" rel="noopener">code &amp; draft</a>
-              · R
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <p class="note">
-        The same incidence question runs through my other work: place-based access in Chicago
-        (the Roseland map below), and market structure in healthcare
-        (<a href="#papers">Medicaid expansion, insurer concentration, merger simulation</a>).
-      </p>
-    </div>
-  </section>
 
   <!-- ============ AWARD ============ -->
   <section id="award">
@@ -251,20 +177,6 @@
     </div>
   </section>
 
-  <!-- ============ NOTES ============ -->
-  <section id="notes">
-    <div class="wrap reveal">
-      <p class="eyebrow">Research notes</p>
-      <h2>Writing</h2>
-      <p class="lede">Plain-language notes on the research: what each paper asks, what it found, and what I learned building it.</p>
-      <a class="note-card" href="notes/who-pays-when-the-fed-tightens.html">
-        <h3>Who pays when the Fed tightens?</h3>
-        <p>Part 1 of the monetary-incidence program is now on SSRN. What the paper finds, the limitation it discloses, and why I shipped it instead of waiting for perfect.</p>
-        <p class="meta">July 2026 · 4 min read</p>
-      </a>
-      <p class="note" style="margin-top:18px"><a href="notes/">All notes →</a></p>
-    </div>
-  </section>
 </main>
 
 <footer>
